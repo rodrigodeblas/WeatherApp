@@ -12,7 +12,7 @@ class ForecastListAdapter(val items: List<String>) : RecyclerView.Adapter<Foreca
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.textView.text=items[position]
     }
 
 
