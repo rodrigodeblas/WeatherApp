@@ -9,7 +9,7 @@ import com.projects.rodrixan.weatherapp.model.domain.Forecast
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.find
 
-class ForecastViewHolder(view: View, val clickListener: OnForecastSelectedListener) :
+class ForecastViewHolder(view: View, val clickListener: (Forecast) -> Unit) :
         RecyclerView.ViewHolder(view) {
 
     private val iconView = view.find<ImageView>(R.id.item_forecast_icon)

@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.projects.rodrixan.weatherapp.R
+import com.projects.rodrixan.weatherapp.model.domain.Forecast
 import com.projects.rodrixan.weatherapp.model.domain.ForecastList
 import com.projects.rodrixan.weatherapp.view.utils.ctx
 
-class ForecastListAdapter(val weekForecast: ForecastList, val clickListener: OnForecastSelectedListener)
+class ForecastListAdapter(val weekForecast: ForecastList, val clickListener: (Forecast) -> Unit)
     : RecyclerView.Adapter<ForecastViewHolder>() {
 
 
