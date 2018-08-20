@@ -22,12 +22,16 @@ class ForecastDataMapper {
     }
 
     private fun convertForecastItemToDomain(forecast: Forecast): ModelForecast {
-        return ModelForecast(convertDate(forecast.dt!!), forecast.weather!![0].description!!,
-                forecast.data?.tempMax!!.toInt(), forecast.data?.tempMin!!.toInt())
+        val weather = forecast.weather!![0]
+        return ModelForecast(convertDate(forecast.dt!!), weather.description!!,
+                forecast.data?.tempMax!!.toInt(), forecast.data?.tempMin!!.toInt(),
+                generateIconUrl(weather.icon!!))
     }
 
     private fun convertDate(date: Long): String {
         val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
         return df.format(date)
     }
+
+    private fun generateIconUrl(iconCode: String): String = "http://openweathermap.org/img/w/$iconCode.png"
 }

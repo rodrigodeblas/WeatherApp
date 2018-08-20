@@ -3,17 +3,23 @@ package com.projects.rodrixan.weatherapp.view
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.projects.rodrixan.weatherapp.R
 import com.projects.rodrixan.weatherapp.view.adapter.ForecastListAdapter
 import com.projects.rodrixan.weatherapp.interactor.ForecastPresenter
 import com.projects.rodrixan.weatherapp.interactor.ForecastPresenterImpl
 import com.projects.rodrixan.weatherapp.model.domain.Forecast
 import com.projects.rodrixan.weatherapp.model.domain.ForecastList
+import com.projects.rodrixan.weatherapp.view.adapter.OnForecastSelectedListener
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.longToast
+import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), ForecastView {
+    companion object {
+        val TAG = MainActivity.javaClass.simpleName
+    }
 
     private val presenter: ForecastPresenter by lazy { ForecastPresenterImpl() }
 
@@ -33,7 +39,13 @@ class MainActivity : AppCompatActivity(), ForecastView {
 
     override fun onForecastReceived(results: ForecastList) {
         runOnUiThread {
-            forecast_list.adapter = ForecastListAdapter(results)
+            forecast_list.adapter = ForecastListAdapter(results, object :
+                    OnForecastSelectedListener {
+                override fun invoke(selected: Forecast) {
+                    toast("Selected Forecast: $selected.description")
+                }
+
+            })
         }
 
     }
