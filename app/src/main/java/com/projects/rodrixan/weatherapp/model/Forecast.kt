@@ -8,7 +8,7 @@ class Forecast : Serializable {
 
     @SerializedName("dt")
     @Expose
-    var dt: Int? = null
+    var dt: Long? = null
     @SerializedName("main")
     @Expose
     var data: Data? = null
@@ -52,7 +52,8 @@ class Forecast : Serializable {
      * @param weather
      * @param rain
      */
-    constructor(dt: Int?, data: Data, weather: List<Weather>, clouds: Clouds, wind: Wind, sys: Sys, dtTxt: String, rain: Rain, snow: Snow) : super() {
+    constructor(dt: Long?, data: Data, weather: List<Weather>, clouds: Clouds, wind: Wind, sys: Sys,
+                dtTxt: String, rain: Rain, snow: Snow) : super() {
         this.dt = dt
         this.data = data
         this.weather = weather

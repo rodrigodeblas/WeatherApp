@@ -14,7 +14,10 @@ class ForecastListAdapter(val items: List<Forecast>) : RecyclerView.Adapter<Fore
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text=items[position].dtTxt!!.toString()
+        with(items[position]) {
+            val weatherVal = weather?.get(0)
+            holder.textView.text = "$dtTxt - ${weatherVal?.description} - ${data?.tempMax}/${data?.tempMin}"
+        }
     }
 
 
