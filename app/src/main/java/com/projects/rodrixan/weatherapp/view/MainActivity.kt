@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.projects.rodrixan.weatherapp.R
-import com.projects.rodrixan.weatherapp.adapter.ForecastListAdapter
+import com.projects.rodrixan.weatherapp.view.adapter.ForecastListAdapter
 import com.projects.rodrixan.weatherapp.interactor.ForecastPresenter
 import com.projects.rodrixan.weatherapp.interactor.ForecastPresenterImpl
-import com.projects.rodrixan.weatherapp.model.Forecast
+import com.projects.rodrixan.weatherapp.model.domain.Forecast
+import com.projects.rodrixan.weatherapp.model.domain.ForecastList
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.longToast
-import org.jetbrains.anko.runOnUiThread
 
 class MainActivity : AppCompatActivity(), ForecastView {
 
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), ForecastView {
         }
     }
 
-    override fun onForecastReceived(results: List<Forecast>) {
+    override fun onForecastReceived(results: ForecastList) {
         runOnUiThread {
             forecast_list.adapter = ForecastListAdapter(results)
         }

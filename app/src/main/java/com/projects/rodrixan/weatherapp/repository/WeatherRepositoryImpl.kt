@@ -1,7 +1,7 @@
 package com.projects.rodrixan.weatherapp.repository
 
 import android.util.Log
-import com.projects.rodrixan.weatherapp.adapter.ForecastListAdapter
+import com.projects.rodrixan.weatherapp.view.adapter.ForecastListAdapter
 import com.projects.rodrixan.weatherapp.model.ForecastResult
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync

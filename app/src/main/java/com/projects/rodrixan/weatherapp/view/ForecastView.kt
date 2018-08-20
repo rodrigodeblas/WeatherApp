@@ -1,9 +1,9 @@
 package com.projects.rodrixan.weatherapp.view
 
-import com.projects.rodrixan.weatherapp.model.Forecast
+import com.projects.rodrixan.weatherapp.model.domain.ForecastList
 
 interface ForecastView {
 
-    fun onForecastReceived(results: List<Forecast>)
+    fun onForecastReceived(results: ForecastList)
     fun onError(error: String)
 }
