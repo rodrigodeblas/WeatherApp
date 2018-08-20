@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), ForecastView {
     }
 
     private fun initRecyclerView() {
-        forecast_list.layoutManager = LinearLayoutManager(this)
+        forecastList.layoutManager = LinearLayoutManager(this)
         doAsync {
             presenter?.getForecastByCity("94043")
         }
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), ForecastView {
 
     override fun onForecastReceived(results: ForecastList) {
         runOnUiThread {
-            forecast_list.adapter = ForecastListAdapter(results, {
+            forecastList.adapter = ForecastListAdapter(results, {
                 toast("Selected Forecast: ${it.description}")
             })
         }

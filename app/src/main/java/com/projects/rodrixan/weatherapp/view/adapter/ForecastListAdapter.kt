@@ -20,7 +20,7 @@ class ForecastListAdapter(val weekForecast: ForecastList, val clickListener: (Fo
     }
 
 
-    override fun getItemCount(): Int = weekForecast.size
+    override fun getItemCount() = weekForecast.size
 
     override fun onBindViewHolder(holder: ForecastViewHolder, position: Int) {
         holder.bindForecast(weekForecast[position])
