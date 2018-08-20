@@ -1,51 +1,46 @@
 package com.projects.rodrixan.weatherapp.view
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.projects.rodrixan.weatherapp.R
 import com.projects.rodrixan.weatherapp.adapter.ForecastListAdapter
-import com.projects.rodrixan.weatherapp.model.ForecastResult
-import com.projects.rodrixan.weatherapp.repository.WeatherApi
-import com.projects.rodrixan.weatherapp.repository.WeatherService
+import com.projects.rodrixan.weatherapp.interactor.ForecastPresenter
+import com.projects.rodrixan.weatherapp.interactor.ForecastPresenterImpl
+import com.projects.rodrixan.weatherapp.model.Forecast
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.runOnUiThread
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ForecastView {
 
-
-    private val weatherApi: WeatherApi = WeatherService.create()
+    private val presenter: ForecastPresenter by lazy { ForecastPresenterImpl() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        presenter.init(this)
         initRecyclerView()
     }
 
     private fun initRecyclerView() {
         forecast_list.layoutManager = LinearLayoutManager(this)
         doAsync {
-            val call = weatherApi.forecastByCode("94043")
-            call.enqueue(object : Callback<ForecastResult> {
-                override fun onFailure(call: Call<ForecastResult>?, t: Throwable?) {
-                    Log.e("retrofit", "call failed")
-                }
+            presenter?.getForecastByCity("94043")
+        }
+    }
 
-                override fun onResponse(call: Call<ForecastResult>?, response: Response<ForecastResult>?) {
-                    Log.d("retrofit", "call success")
-                    uiThread {
-                        forecast_list.adapter = ForecastListAdapter(response?.body()?.forecastList!!)
-                    }
-                }
-
-            })
+    override fun onForecastReceived(results: List<Forecast>) {
+        runOnUiThread {
+            forecast_list.adapter = ForecastListAdapter(results)
         }
 
+    }
+
+    override fun onError(error: String) {
+        runOnUiThread {
+            longToast(error)
+        }
     }
 }
