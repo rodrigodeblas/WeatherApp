@@ -2,8 +2,8 @@ package com.projects.rodrixan.weatherapp.view.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.bumptech.glide.Glide
 import com.projects.rodrixan.weatherapp.model.domain.Forecast
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_forecast.view.*
 
 class ForecastViewHolder(view: View, val clickListener: (Forecast) -> Unit) :
@@ -12,7 +12,7 @@ class ForecastViewHolder(view: View, val clickListener: (Forecast) -> Unit) :
 
     fun bindForecast(forecast: Forecast) {
         with(forecast) {
-            Picasso.get().load(iconUrl).into(itemView.forecastIcon)
+            Glide.with(itemView).load(iconUrl).into(itemView.forecastIcon)
             itemView.forecastDate.text = date
             itemView.forecastDescription.text = description
             itemView.forecastMaxTemp.text = "$high"
