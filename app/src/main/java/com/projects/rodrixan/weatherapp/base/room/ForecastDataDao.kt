@@ -13,8 +13,6 @@ interface ForecastDataDao {
     @Insert(onConflict = REPLACE)
     fun updateDayForecast(dayForecast: DayForecast)
 
-
-
     @Query("DELETE from DayForecast")
     fun deleteAll()
 }

@@ -16,7 +16,7 @@ data class CityForecast(
 @Entity(tableName = "DayForecast")
 data class DayForecast(
         @PrimaryKey(autoGenerate = true) val id: Long?,
-        @ColumnInfo(name = "date") val city: Date,
+        @ColumnInfo(name = "date") val date: Long,
         @ColumnInfo(name = "description") var descpiption: String,
         @ColumnInfo(name = "high") var high: Int,
         @ColumnInfo(name = "low") var low: Int,

@@ -1,5 +1,6 @@
 package com.projects.rodrixan.weatherapp.model.domain
 
+import com.projects.rodrixan.weatherapp.base.room.DayForecast
 import com.projects.rodrixan.weatherapp.model.Forecast
 import com.projects.rodrixan.weatherapp.model.ForecastResult
 import java.text.DateFormat
@@ -34,4 +35,20 @@ class ForecastDataMapper {
     }
 
     private fun generateIconUrl(iconCode: String) = "http://openweathermap.org/img/w/$iconCode.png"
+
+    fun convertFromDatabase(forecast: List<DayForecast>): ForecastList {
+        return ForecastList("${forecast[0].cityId}", "${forecast[0].cityId}",
+                convertForecastListDatabaseToDomain(forecast))
+    }
+
+
+    private fun convertForecastListDatabaseToDomain(list: List<DayForecast>): List<ModelForecast> {
+        return list.mapIndexed { index, dayForecast -> convertForecastFromDatabase(dayForecast) }
+    }
+
+    private fun convertForecastFromDatabase(dayForecast: DayForecast): ModelForecast {
+        with(dayForecast) {
+            return ModelForecast(convertDate(date), descpiption, high, low, iconUrl)
+        }
+    }
 }
