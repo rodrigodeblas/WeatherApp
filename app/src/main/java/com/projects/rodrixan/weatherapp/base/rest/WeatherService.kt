@@ -1,4 +1,4 @@
-package com.projects.rodrixan.weatherapp.repository
+package com.projects.rodrixan.weatherapp.base.rest
 
 import com.projects.rodrixan.weatherapp.BuildConfig
 import com.projects.rodrixan.weatherapp.base.GlobalConstants
@@ -9,7 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class WeatherService {
+abstract class WeatherService {
     companion object Factory {
         fun create(): WeatherApi {
             val retrofit = Retrofit.Builder()

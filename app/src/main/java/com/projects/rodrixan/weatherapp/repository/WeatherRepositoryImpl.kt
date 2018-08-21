@@ -1,5 +1,7 @@
 package com.projects.rodrixan.weatherapp.repository
 
+import com.projects.rodrixan.weatherapp.base.rest.WeatherApi
+import com.projects.rodrixan.weatherapp.base.rest.WeatherService
 import com.projects.rodrixan.weatherapp.model.ForecastResult
 import retrofit2.Call
 import retrofit2.Callback

@@ -1,4 +1,4 @@
-package com.projects.rodrixan.weatherapp.repository
+package com.projects.rodrixan.weatherapp.base.rest
 
 import com.projects.rodrixan.weatherapp.model.ForecastResult
 import retrofit2.Call
