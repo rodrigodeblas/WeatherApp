@@ -1,4 +1,4 @@
-package com.projects.rodrixan.weatherapp
+package com.projects.rodrixan.weatherapp.base
 
 class GlobalConstants {
     companion object {

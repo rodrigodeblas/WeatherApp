@@ -3,7 +3,6 @@ package com.projects.rodrixan.weatherapp.view.adapter
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import com.projects.rodrixan.weatherapp.R
 import com.projects.rodrixan.weatherapp.model.domain.Forecast
 import com.projects.rodrixan.weatherapp.model.domain.ForecastList

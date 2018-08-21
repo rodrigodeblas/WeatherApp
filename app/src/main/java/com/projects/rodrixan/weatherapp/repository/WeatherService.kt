@@ -1,7 +1,7 @@
 package com.projects.rodrixan.weatherapp.repository
 
 import com.projects.rodrixan.weatherapp.BuildConfig
-import com.projects.rodrixan.weatherapp.GlobalConstants
+import com.projects.rodrixan.weatherapp.base.GlobalConstants
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response

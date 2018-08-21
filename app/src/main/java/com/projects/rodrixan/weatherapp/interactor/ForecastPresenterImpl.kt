@@ -8,24 +8,25 @@ import com.projects.rodrixan.weatherapp.view.ForecastView
 
 class ForecastPresenterImpl : ForecastPresenter, WeatherRepository.ForecastCallback {
 
-    private val repository: WeatherRepository by lazy { WeatherRepositoryImpl() }
+    private lateinit var repository: WeatherRepository
 
-    private var view: ForecastView? = null
+    private lateinit var view: ForecastView
 
     override fun init(view: ForecastView) {
         this.view = view
+        repository= WeatherRepositoryImpl()
     }
 
     override fun getForecastByCity(code: String) {
-        repository?.getForecastList(this, code)
+        repository.getForecastList(this, code)
     }
 
     override fun onForecastListReceived(results: ForecastResult) {
-        view?.onForecastReceived(ForecastDataMapper().convertFromDataModel(results))
+        view.onForecastReceived(ForecastDataMapper().convertFromDataModel(results))
     }
 
     override fun onError(error: String) {
-        view?.onError(error)
+        view.onError(error)
     }
 
 }
