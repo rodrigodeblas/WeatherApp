@@ -2,6 +2,7 @@ package com.projects.rodrixan.weatherapp.interactor
 
 import com.projects.rodrixan.weatherapp.model.ForecastResult
 import com.projects.rodrixan.weatherapp.model.domain.ForecastDataMapper
+import com.projects.rodrixan.weatherapp.model.domain.ForecastList
 import com.projects.rodrixan.weatherapp.repository.WeatherRepository
 import com.projects.rodrixan.weatherapp.repository.WeatherRepositoryImpl
 import com.projects.rodrixan.weatherapp.view.ForecastView
@@ -21,8 +22,8 @@ class ForecastPresenterImpl : ForecastPresenter, WeatherRepository.ForecastCallb
         repository.getForecastList(this, code)
     }
 
-    override fun onForecastListReceived(results: ForecastResult) {
-        view.onForecastReceived(ForecastDataMapper().convertFromDataModel(results))
+    override fun onForecastListReceived(results: ForecastList) {
+        view.onForecastReceived(results)
     }
 
     override fun onError(error: String) {
