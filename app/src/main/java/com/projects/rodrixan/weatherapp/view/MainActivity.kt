@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), ForecastView {
         callForData()
     }
 
-    fun initPresenter() {
+    private fun initPresenter() {
         presenter = ForecastPresenterImpl()
         presenter.init(this)
     }
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), ForecastView {
         forecastList.layoutManager = LinearLayoutManager(this)
     }
 
-    fun callForData() {
+    private fun callForData() {
         doAsync {
             presenter.getForecastByCity("94043")
         }
@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity(), ForecastView {
 
     override fun onForecastReceived(results: ForecastList) {
         runOnUiThread {
-            forecastList.adapter = ForecastListAdapter(results, {
+            forecastList.adapter = ForecastListAdapter(results) {
                 toast("Selected Forecast: ${it.description}")
-            })
+            }
         }
 
     }
