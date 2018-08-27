@@ -36,3 +36,4 @@ class WeatherRepositoryImpl : WeatherRepository {
         }
     }
 }
+
